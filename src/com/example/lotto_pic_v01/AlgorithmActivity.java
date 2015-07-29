@@ -1,16 +1,38 @@
 package com.example.lotto_pic_v01;
 
-import android.support.v7.app.ActionBarActivity;
+import java.io.FileInputStream;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 public class AlgorithmActivity extends ActionBarActivity {
 
+	Bitmap bitmap;
+	ImageView imgview;
+	ApplicationClass ac;
+	byte[] byteArray;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.algorithm);
+		
+		String filename = getIntent().getStringExtra("image");
+		try {
+		    FileInputStream is = this.openFileInput(filename);
+		    bitmap = BitmapFactory.decodeStream(is);
+		    is.close();
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		imgview=(ImageView)findViewById(R.id.BitmapImageView);
+		imgview.setImageBitmap(bitmap);
+		
 	}
 
 	@Override

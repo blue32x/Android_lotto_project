@@ -1,11 +1,13 @@
 package com.example.lotto_pic_v01;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,7 +26,9 @@ public class ButtonActivity extends Fragment implements android.view.View.OnClic
 	Button smilebutton;
 	View view;
 	ApplicationClass ac;
+	Bitmap bitmap=null;
 	boolean inProgress = false;
+	//byte[] byteArray;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.buttonframe, container, false);
@@ -47,11 +51,24 @@ public class ButtonActivity extends Fragment implements android.view.View.OnClic
 			break;
 		case R.id.smilebtn:
 			//take a picture 
+			//byte[] byteArray;
+			try{
 			ac=(ApplicationClass)getActivity().getApplicationContext();	
 			ac.mCamera.takePicture(null, null, takepic);
 			inProgress = true;
+			//bitmap to byte array
+			String filename="bitmap.jpg";
+			FileOutputStream stream = getActivity().openFileOutput(filename, Context.MODE_PRIVATE);
+			ac.bitmap.compress(Bitmap.CompressFormat.JPEG,100, stream);
+			stream.close();
+			ac.bitmap.recycle();
 			Intent algorithm=new Intent(getActivity(),AlgorithmActivity.class);
+			algorithm.putExtra("mybitmap", filename);
 			startActivity(algorithm);
+			}catch(Exception e)
+			{
+				e.printStackTrace();
+			}
 			break;
 		}
 	}
@@ -66,9 +83,9 @@ public class ButtonActivity extends Fragment implements android.view.View.OnClic
             {
                 Log.v("1", "takePicture JPEG »çÁø ÂïÀ½");
 
-                Bitmap bitmap = BitmapFactory.decodeByteArray(data,  0,  data.length);
+                ac.bitmap = BitmapFactory.decodeByteArray(data,  0,  data.length);
                // iv_preview.setImageBitmap(bitmap);
-                saveBitmaptoJpeg(bitmap,"history1","1");
+                saveBitmaptoJpeg(ac.bitmap,"history1","1");
                 camera.startPreview();
                 inProgress = false; 
             }

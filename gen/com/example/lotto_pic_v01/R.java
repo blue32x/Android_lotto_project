@@ -1930,6 +1930,7 @@ containing a value of this type.
         public static final int notification_template_icon_bg=0x7f02003c;
     }
     public static final class id {
+        public static final int BitmapImageView=0x7f09004f;
         public static final int action0=0x7f090055;
         public static final int action_bar=0x7f090040;
         public static final int action_bar_activity_content=0x7f090003;
@@ -1991,7 +1992,6 @@ containing a value of this type.
         public static final int parentPanel=0x7f09002d;
         public static final int preview=0x7f090063;
         public static final int previewframe=0x7f090053;
-        public static final int processedsurf=0x7f09004f;
         public static final int progress_circular=0x7f090007;
         public static final int progress_horizontal=0x7f090008;
         public static final int radio=0x7f09003a;

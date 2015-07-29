@@ -410,6 +410,7 @@ int drawable abc_textfield_search_default_mtrl_alpha 0x7f020039
 int drawable abc_textfield_search_material 0x7f02003a
 int drawable ic_launcher 0x7f02003b
 int drawable notification_template_icon_bg 0x7f02003c
+int id BitmapImageView 0x7f09004f
 int id action0 0x7f090055
 int id action_bar 0x7f090040
 int id action_bar_activity_content 0x7f090003
@@ -471,7 +472,6 @@ int id normal 0x7f09000b
 int id parentPanel 0x7f09002d
 int id preview 0x7f090063
 int id previewframe 0x7f090053
-int id processedsurf 0x7f09004f
 int id progress_circular 0x7f090007
 int id progress_horizontal 0x7f090008
 int id radio 0x7f09003a
